@@ -23,7 +23,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
 
                 http.csrf(csrf->csrf.disable()).authorizeHttpRequests()
-                        .requestMatchers("/api/v1/auth/**").permitAll().anyRequest().authenticated().and().sessionManagement()
+                        .requestMatchers("/api/v1/auth/**","/courses/**","/modules/**").permitAll().anyRequest().authenticated().and().sessionManagement()
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                         .and()
                         .authenticationProvider(authenticationProvider)
