@@ -19,8 +19,22 @@ public class ModuleService {
         return mr.findAll();
     }
 
-    public Optional<Module> getCourseById(Integer id)
+    public Optional<Module> getModuleById(Integer id)
     {
         return mr.findById(id);
     }
+
+    public Module createModule(Module module)
+    {
+        if (module.getId()==null)
+        {
+            List<Module> modules= (List<Module>)mr.findAll();
+            module.setId(modules.size()+1);
+            mr.save(module);
+            return module;
+        }
+        mr.save(module);
+        return module;
+    }
+
 }

@@ -22,4 +22,17 @@ public class CourseService {
     {
         return cr.findById(id);
     }
+
+    public Course createCourse(Course course)
+    {
+        if (course.getId()==null)
+        {
+            List<Course> courses = (List<Course>)cr.findAll();
+            course.setId(courses.size()+1);
+            cr.save(course);
+            return course;
+        }
+        cr.save(course);
+        return course;
+    }
 }
